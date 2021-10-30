@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "243243697269",
+    "project_id": "mobileassignmenttwo",
+    "storage_bucket": "mobileassignmenttwo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243243697269:android:567222f0feade3e59ae43c",
+        "android_client_info": {
+          "package_name": "cs.daniel.mobileassignmenttwo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243243697269-g3igum5j0529d8o783hc4ua8n05pqepe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmY94CsH75yp5Se32lXNunVaHMnMLWeX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243243697269-g3igum5j0529d8o783hc4ua8n05pqepe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
