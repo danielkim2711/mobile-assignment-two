@@ -1,6 +1,8 @@
 package cs.daniel.mobileassignmenttwo;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +40,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
     // Bind data using class
 
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int bindPosition, @NonNull Employee model) {
+    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") final int bindPosition, @NonNull Employee model) {
         holder.name.setText(model.getName());
         holder.email.setText(model.getEmail());
         holder.position.setText(model.getPosition());
@@ -103,6 +105,36 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
                                 });
                     }
                 });
+            }
+        });
+
+        // Set onClickListener for delete button
+
+        // Set alert dialog for user
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.name.getContext());
+                builder.setTitle("Would you really like to delete?");
+                builder.setMessage("This can't be undo.");
+
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase.getInstance().getReference().child("employees")
+                                .child(getRef(bindPosition).getKey()).removeValue();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(holder.name.getContext(),
+                                "Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
             }
         });
     }
