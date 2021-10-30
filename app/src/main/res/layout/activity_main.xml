@@ -1,80 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:padding="10dp">
-
-    <TextView
-        android:id="@+id/tvEmployeeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Employee Name:" />
-
-    <EditText
-        android:id="@+id/etEmployeeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmployeeName"
-        android:hint="Enter Your Name" />
-
-    <TextView
-        android:id="@+id/tvEmployeeAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etEmployeeName"
-        android:text="Employee Age:" />
-
-    <EditText
-        android:id="@+id/etEmployeeAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmployeeAge"
-        android:hint="Enter Your Age" />
-
-    <TextView
-        android:id="@+id/tvEmployeePosition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etEmployeeAge"
-        android:text="Employee Position:" />
-
-    <EditText
-        android:id="@+id/etEmployeePosition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmployeePosition"
-        android:hint="Enter Your Position" />
-
-    <TextView
-        android:id="@+id/tvEmployeeCountry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etEmployeePosition"
-        android:text="Employee Country:" />
-
-    <EditText
-        android:id="@+id/etEmployeeCountry"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmployeeCountry"
-        android:hint="Enter Your Country" />
-
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etEmployeeCountry"
-        android:text="Submit" />
+    tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fruitRecyclerView"
+        android:id="@+id/rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/submitButton">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
