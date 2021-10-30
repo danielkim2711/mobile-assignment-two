@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Method for searching by employee's name from Firebase
+    // Searching by employee's name from Firebase
 
     private void txtSearch(String str) {
         FirebaseRecyclerOptions<Employee> options = new FirebaseRecyclerOptions.Builder<Employee>()

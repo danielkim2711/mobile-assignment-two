@@ -40,7 +40,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
     // Bind data using class
 
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") final int bindPosition, @NonNull Employee model) {
+    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int bindPosition, @NonNull Employee model) {
         holder.name.setText(model.getName());
         holder.email.setText(model.getEmail());
         holder.position.setText(model.getPosition());
