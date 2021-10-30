@@ -1,18 +1,27 @@
 package cs.daniel.mobileassignmenttwo;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.myViewHolder> {
 
@@ -29,13 +38,13 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
     // Bind data using class
 
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Employee model) {
-        holder.country.setText(model.getCountry());
-        holder.email.setText(model.getEmail());
+    protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int bindPosition, @NonNull Employee model) {
         holder.name.setText(model.getName());
+        holder.email.setText(model.getEmail());
         holder.position.setText(model.getPosition());
+        holder.country.setText(model.getCountry());
 
-    // Set onClickListener for update button
+        // Pop up update panel once update button is clicked.
 
         holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +54,55 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
                         .setExpanded(true, 1200)
                         .create();
 
-                 dialogPlus.show();
+                // Grab data for edit text
+
+                View dialogPlusHolderView = dialogPlus.getHolderView();
+
+                EditText name = dialogPlusHolderView.findViewById(R.id.etName);
+                EditText email = dialogPlusHolderView.findViewById(R.id.etEmail);
+                EditText position = dialogPlusHolderView.findViewById(R.id.etPosition);
+                EditText country = dialogPlusHolderView.findViewById(R.id.etCountry);
+
+                Button btnUpdate = dialogPlusHolderView.findViewById(R.id.btnUpdate);
+
+                name.setText(model.getName());
+                email.setText(model.getEmail());
+                position.setText(model.getPosition());
+                country.setText(model.getCountry());
+
+                dialogPlus.show();
+
+                // Set onClickListener for update button
+
+                btnUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("name", name.getText().toString());
+                        map.put("email", email.getText().toString());
+                        map.put("position", position.getText().toString());
+                        map.put("country", country.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("employees")
+                                .child(getRef(bindPosition).getKey()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(holder.name.getContext(),
+                                                "Updated successfully", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(holder.name.getContext(),
+                                                "Failed to update. Please try again.", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                                });
+                    }
+                });
             }
         });
     }
