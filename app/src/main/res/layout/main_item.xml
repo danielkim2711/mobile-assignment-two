@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvEmail"
-            android:text="Employee Email"
+            android:text="Email"
             android:layout_below="@+id/tvName"
             android:textSize="20sp"
             android:textColor="@color/black" />
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvPosition"
-            android:text="Employee Position"
+            android:text="Position"
             android:layout_below="@+id/tvEmail"
             android:textSize="20sp"
             android:textColor="@color/black" />
@@ -43,10 +43,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvCountry"
-            android:text="Employee Country"
+            android:text="Country"
             android:layout_below="@+id/tvPosition"
             android:textSize="20sp"
             android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_below="@+id/tvCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Update"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Delete"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
