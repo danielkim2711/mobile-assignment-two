@@ -150,16 +150,16 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
 
     class myViewHolder extends RecyclerView.ViewHolder {
 
-        TextView country, email, name, position;
+        TextView name, email, position, country;
         Button btnUpdate, btnDelete;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            country = (TextView)itemView.findViewById(R.id.tvCountry);
-            email = (TextView)itemView.findViewById(R.id.tvEmail);
             name = (TextView)itemView.findViewById(R.id.tvName);
+            email = (TextView)itemView.findViewById(R.id.tvEmail);
             position = (TextView)itemView.findViewById(R.id.tvPosition);
+            country = (TextView)itemView.findViewById(R.id.tvCountry);
 
             btnUpdate = (Button)itemView.findViewById(R.id.btnUpdate);
             btnDelete = (Button)itemView.findViewById(R.id.btnDelete);
