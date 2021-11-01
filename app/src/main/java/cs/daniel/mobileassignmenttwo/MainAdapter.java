@@ -37,7 +37,7 @@ public class MainAdapter extends FirebaseRecyclerAdapter<Employee,MainAdapter.my
         super(options);
     }
 
-    // Bind data using class
+    // Bind data using Employee class
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int bindPosition, @NonNull Employee model) {
